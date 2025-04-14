@@ -28,8 +28,8 @@ public class Account
     {
 
         public int AccountId { get; set; }
-        public required string AccountNumber { get; set; }
-        public required string AccountName { get; set; }
+        public string AccountNumber { get; set; }
+        public string AccountName { get; set; }
         public double Balance { get; set; }
         public string AccountType { get; set; }
         public string AccountStatus { get; set; }
@@ -54,6 +54,7 @@ public class Account
     public AccountRetrievalDTO GetSpecificAccount(string accountNumber = default, string email = default, string phoneNumber = default)
     {
         Account account;
+        AccountRetrievalDTO accDto = new AccountRetrievalDTO();
         if (string.IsNullOrEmpty(accountNumber) && string.IsNullOrEmpty(email) && string.IsNullOrEmpty(phoneNumber))
         {
             Console.WriteLine("Wetin dey do you");
@@ -62,8 +63,8 @@ public class Account
         {
             account = accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
 
-            var mappedAccount = MapAccount(account);
-            return mappedAccount;
+            accDto = MapAccount(account);
+            return accDto;
         }
         else if (string.IsNullOrEmpty(accountNumber) && !string.IsNullOrEmpty(email))
         {
@@ -71,9 +72,10 @@ public class Account
             account = accounts.SingleOrDefault(x => x.AccountId == customerScc.AccountId);
             //account = customerScc.Account;
 
-            var mappedAccount = MapAccount(account);
-            return mappedAccount;
+            accDto = MapAccount(account);
+            return accDto;
         }
+        return accDto ;
 
     }
 
@@ -126,7 +128,7 @@ public class Account
     //        return "Closed";
     //    }
     //}
-}
+
 
 
 
