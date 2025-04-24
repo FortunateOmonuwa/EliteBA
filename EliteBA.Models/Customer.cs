@@ -31,7 +31,8 @@ public class Customer
         get => _phoneNumber;
         set
         {
-            var validatedPhone = Validators.ValidatePhoneNumber(value);
+            var validatedPhone = 
+                Validators.ValidatePhoneNumber(value);
             if (validatedPhone == null)
             {
                 return;

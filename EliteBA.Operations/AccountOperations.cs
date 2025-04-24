@@ -19,7 +19,8 @@ public class AccountOperations
         {
             for (int i = 0; i < 10; i++) accountNumber += random.Next(0, 9);
         } while (Tables.accounts.Any(account => account.AccountNumber == accountNumber));
-        
+
         return accountNumber;
     }
+
 }
