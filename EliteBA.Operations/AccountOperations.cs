@@ -22,4 +22,30 @@ public class AccountOperations
         
         return accountNumber;
     }
+
+
+    //This method will be for Account creation.
+
+    public Account CreateAccount(string firstname, string lastname, string accountType)
+    {
+        var accountNumber = GenerateAccountNumber();
+
+        //This converts the accountType string to enum
+        AccountType parsedAccountType = (AccountType)Enum.Parse(typeof(AccountType), accountType, true);
+
+        var account = new Account
+        {
+            AccountName = $"{lastname} {firstname}",
+            AccountType = parsedAccountType,
+            AccountNumber = accountNumber
+        };
+
+
+        //Now we add our object to the account List
+        Tables.accounts.Add(account);
+
+        return account;
+    
+    }
+
 }
