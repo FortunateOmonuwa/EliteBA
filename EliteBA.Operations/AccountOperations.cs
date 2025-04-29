@@ -23,7 +23,7 @@ public class AccountOperations
         return accountNumber;
     }
 
-    public static double ViewAccountBalance(string accountNumber)
+    public double ViewAccountBalance(string accountNumber)
     {
         var account = Tables.accounts.SingleOrDefault(a => a.AccountNumber == accountNumber);
 
