@@ -20,6 +20,10 @@ public class AccountOperations
         {
             return $"{transferDetails.receiver} does not exist";
         }
+        if(senderAcc.Balance <= 100)
+        {
+            return $"You account balance is too low for this transaction";
+        }
 
         senderAcc.Balance -= transferDetails.amount;
         receiverAcc.Balance += transferDetails.amount;
