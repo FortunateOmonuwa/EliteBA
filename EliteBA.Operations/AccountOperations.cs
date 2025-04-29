@@ -22,4 +22,19 @@ public class AccountOperations
         
         return accountNumber;
     }
+
+    public static double ViewAccountBalance(string accountNumber)
+    {
+        var account = Tables.accounts.SingleOrDefault(a => a.AccountNumber == accountNumber);
+
+        if (account != null)
+        {
+            return account.Balance;
+        }
+        else
+        {
+            Console.WriteLine($"Account with number {accountNumber} not found.");
+            return 0;
+        }
+    }
 }
