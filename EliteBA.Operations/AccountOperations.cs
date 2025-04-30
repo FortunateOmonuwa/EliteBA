@@ -1,8 +1,6 @@
 ﻿using EliteBA.DB;
 using EliteBA.Models;
-
 namespace EliteBA.Operations;
-
 public class AccountOperations
 {
     /**
@@ -22,30 +20,27 @@ public class AccountOperations
         
         return accountNumber;
     }
+    
+    //A record will be created since it's better
+    public record CreateAccountDto(string firstname, string lastname, string accountType);
 
 
-    //This method will be for Account creation.
-
-    public Account CreateAccount(string firstname, string lastname, string accountType)
+    //This method handles account creation using the details of a customer and returns the account details of the customer
+    public Account CreateAccount(CreateAccountDto dto)
     {
         var accountNumber = GenerateAccountNumber();
 
         //This converts the accountType string to enum
-        AccountType parsedAccountType = (AccountType)Enum.Parse(typeof(AccountType), accountType, true);
-
+        AccountType parsedAccountType = (AccountType)Enum.Parse(typeof(AccountType), dto.accountType, true);
         var account = new Account
         {
-            AccountName = $"{lastname} {firstname}",
+            AccountName = $"{dto.lastname} {dto.firstname}",
             AccountType = parsedAccountType,
             AccountNumber = accountNumber
         };
-
-
         //Now we add our object to the account List
         Tables.accounts.Add(account);
-
         return account;
-    
     }
 
 }
