@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteBA.Operations", "Elite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteBA.DB", "EliteBA.DB\EliteBA.DB.csproj", "{415C7D9E-2148-4A3D-90FF-1CE42807B5F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELITEBA.DTOs", "ELITEBA.DTOs\ELITEBA.DTOs.csproj", "{AC311DF2-FE95-44E8-BB8D-639013D74F20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +41,15 @@ Global
 		{415C7D9E-2148-4A3D-90FF-1CE42807B5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{415C7D9E-2148-4A3D-90FF-1CE42807B5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{415C7D9E-2148-4A3D-90FF-1CE42807B5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC311DF2-FE95-44E8-BB8D-639013D74F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC311DF2-FE95-44E8-BB8D-639013D74F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC311DF2-FE95-44E8-BB8D-639013D74F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC311DF2-FE95-44E8-BB8D-639013D74F20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B573AA81-260C-476D-BE45-7698CC02E4E2}
 	EndGlobalSection
 EndGlobal
