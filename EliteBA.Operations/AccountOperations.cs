@@ -1,6 +1,10 @@
 ﻿using EliteBA.DB;
 using EliteBA.Models;
+using EliteBA.DTO;
+
+
 namespace EliteBA.Operations;
+
 public class AccountOperations
 {
     /**
@@ -8,7 +12,7 @@ public class AccountOperations
    * The method generates a random 10 digits string and compares with existing accounts list to ensure it is unique.
    * Returns the generated 10 digits (string)
    */
-    private string GenerateAccountNumber()
+    private static string GenerateAccountNumber()
     {
         Random random = new Random();
         string accountNumber = "";
@@ -21,12 +25,14 @@ public class AccountOperations
         return accountNumber;
     }
     
-    //A record will be created since it's better
-    public record CreateAccountDto(string firstname, string lastname, string accountType);
-
-
-    //This method handles account creation using the details of a customer and returns the account details of the customer
-    public Account CreateAccount(CreateAccountDto dto)
+    
+    /// <summary>
+    /// This Method creates a new bank account using the details provided in the CreateAccountDto.
+    /// 
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    internal static Account CreateAccount(CreateAccountDto dto)
     {
         var accountNumber = GenerateAccountNumber();
 
