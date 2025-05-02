@@ -33,8 +33,7 @@ public class AccountOperations
         }
         else
         {
-            Console.WriteLine($"Account with number {accountNumber} not found.");
-            return 0;
+            return 0.00;
         }
     }
 }
