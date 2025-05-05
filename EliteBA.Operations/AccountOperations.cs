@@ -37,8 +37,7 @@ public class AccountOperations
         {
             return 0.00;
         }
-    }
-    
+    } 
     
     /// <summary>
     /// This Method creates a new bank account using the details provided in the CreateAccountDto.
@@ -62,5 +61,4 @@ public class AccountOperations
         Tables.accounts.Add(account);
         return account;
     }
-
 }
