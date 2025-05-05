@@ -5,9 +5,7 @@ using EliteBA.Models;
 using ELITEBA.DTOs;
 using Transaction = EliteBA.Models.Transaction;
 
-
 namespace EliteBA.Operations;
-
 public class AccountOperations
 {
     /**
@@ -30,7 +28,6 @@ public class AccountOperations
 
     public static string Transfer(TransferDTO transferDetails) 
     {
-       
         var senderAccInput = Tables.accounts.SingleOrDefault(x => x.AccountNumber == transferDetails.senderAcc);
         if (senderAccInput == null) 
         {
@@ -48,7 +45,6 @@ public class AccountOperations
             Amount = transferDetails.amount,
             Narration = transferDetails.narration,
             DateCreated = DateTime.Now,
-
         };
         if (senderAccInput.Balance < transferDetails.amount) 
         {
