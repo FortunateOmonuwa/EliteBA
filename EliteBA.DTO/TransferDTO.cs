@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace EliteBA.DTO
 {
    
-    public record TransferDTO(string senderAcc, string receiverAcc, double amount);
+    public record TransferDTO(string senderAcc, string receiverAcc, double amount,string narration);
 
 }
