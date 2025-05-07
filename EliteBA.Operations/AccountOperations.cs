@@ -1,6 +1,7 @@
 ﻿using EliteBA.DB;
 using EliteBA.Models;
 using EliteBA.DTO;
+using EliteBA.Utilities;
 
 
 namespace EliteBA.Operations;
@@ -47,6 +48,44 @@ public class AccountOperations
         //Now we add our object to the account List
         Tables.accounts.Add(account);
         return account;
+    }
+
+    public record TransferDTO(string senderAcc, string receiver, double amount);
+    public string Transfer(TransferDTO transferDetails)
+    {
+        var senderAcc = Tables.accounts.SingleOrDefault(x => x.AccountNumber == transferDetails.senderAcc);
+        var receiverAcc = Tables.accounts.SingleOrDefault(x => x.AccountNumber == transferDetails.receiver);
+
+        if (senderAcc == null)
+        {
+            return $"{transferDetails.senderAcc} does not exist";
+        }
+        if (receiverAcc == null)
+        {
+            return $"{transferDetails.receiver} does not exist";
+        }
+        if (senderAcc.Balance <= 100)
+        {
+            return $"You account balance is too low for this transaction";
+        }
+
+        senderAcc.Balance -= transferDetails.amount;
+        receiverAcc.Balance += transferDetails.amount;
+
+        var transcation = new Transaction
+        {
+            AccountId = senderAcc.AccountId,
+            Amount = transferDetails.amount,
+            RecipientAccountId = receiverAcc.AccountId,
+            DateCreated = DateTime.Now,
+            Narration = $"Transfer from {senderAcc.AccountName} to {receiverAcc.AccountName}",
+            TransactionId = Generators.GenerateTransactionId(),
+            IsTransfer = true,
+            TransactionType = TransactionType.Transfer,
+        };
+        Tables.transactions.Add(transcation);
+
+        return "Transaction successful";
     }
 
 }
