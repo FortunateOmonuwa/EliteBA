@@ -2,9 +2,6 @@
 using EliteBA.DB;
 using EliteBA.Models;
 using EliteBA.DTO;
-
-
-using ELITEBA.DTOs;
 using Transaction = EliteBA.Models.Transaction;
 
 namespace EliteBA.Operations;
@@ -27,8 +24,9 @@ public class AccountOperations
         
         return accountNumber;
     }
+
     /// <summary>
-    /// enable transfer feautures
+    /// Handles transfering of funds from one account to another
     /// </summary>
     /// <param name="transferDetails"></param>
     /// <returns></returns>
@@ -60,16 +58,16 @@ public class AccountOperations
         }
         senderAccInput.Balance -= transferDetails.amount;
         receiverAcc.Balance +=transferDetails.amount;
-       trans.IsTransfer = true;
+        trans.IsTransfer = true;
         Tables.transactions.Add( trans );  
-        return null;
-
+        return "Transfer was succesful";
     }
-   
- }
-        
-    
-=======
+
+    /// <summary>
+    /// This method handles the viewing of account balance.
+    /// </summary>
+    /// <param name="accountNumber">The account number of the customer</param>
+    /// <returns></returns>
     public double ViewAccountBalance(string accountNumber)
     {
         var account = Tables.accounts.SingleOrDefault(a => a.AccountNumber == accountNumber);
@@ -82,23 +80,23 @@ public class AccountOperations
         {
             return 0.00;
         }
-    } 
-    
+    }
+
     /// <summary>
     /// This Method creates a new bank account using the details provided in the CreateAccountDto.
     /// 
     /// </summary>
-    /// <param name="dto"></param>
+    /// <param name="accountDetails"></param>
     /// <returns></returns>
-    internal static Account CreateAccount(CreateAccountDto dto)
+    internal static Account CreateAccount(CreateAccountDto accountDetails)
     {
         var accountNumber = GenerateAccountNumber();
 
         //This converts the accountType string to enum
-        AccountType parsedAccountType = (AccountType)Enum.Parse(typeof(AccountType), dto.accountType, true);
+        AccountType parsedAccountType = (AccountType)Enum.Parse(typeof(AccountType), accountDetails.accountType, true);
         var account = new Account
         {
-            AccountName = $"{dto.lastname} {dto.firstname}",
+            AccountName = $"{accountDetails.lastname} {accountDetails.firstname}",
             AccountType = parsedAccountType,
             AccountNumber = accountNumber
         };
@@ -106,5 +104,5 @@ public class AccountOperations
         Tables.accounts.Add(account);
         return account;
     }
-}
 
+}

@@ -4,9 +4,9 @@ namespace EliteBA.Operations;
 
 public class BankOperations
 {
+    private AccountOperations accountOps = new AccountOperations();
     public double GetAccountBalance(string accountNumberToCheck)
     {
-        AccountOperations accountOps = new AccountOperations();
         double balance = accountOps.ViewAccountBalance(accountNumberToCheck);
         return balance;
     }

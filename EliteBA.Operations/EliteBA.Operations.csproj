@@ -8,11 +8,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\EliteBA.DB\EliteBA.DB.csproj" />
-<<<<<<< HEAD
-        <ProjectReference Include="..\ELITEBA.DTOs\ELITEBA.DTOs.csproj" />
-=======
         <ProjectReference Include="..\EliteBA.DTO\EliteBA.DTO.csproj" />
->>>>>>> 184cff5285df47c83ff2065c6991acffa1d50213
         <ProjectReference Include="..\EliteBA.Models\EliteBA.Models.csproj" />
     </ItemGroup>
 
