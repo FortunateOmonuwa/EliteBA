@@ -32,4 +32,19 @@ public class CustomerOperations
         Tables.customers.Add(customer);
         return customer;
     }
+    /// <summary>
+    /// A method to block account
+    /// </summary>
+    /// <param name="accountnumber"></param>
+    /// <returns></returns>
+    public string CloseCustomerAccount(string accountnumber)
+    {
+        var accexist = Tables.accounts.FirstOrDefault(x => x.AccountNumber == accountnumber);
+        if (accexist == null) 
+        {
+            return "Account does not exist";
+        }
+        accexist.AccountStatus = AccountStatus.Closed;
+        return "Account closed";
+    }
 }
