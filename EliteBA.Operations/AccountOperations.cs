@@ -105,4 +105,61 @@ public class AccountOperations
         return account;
     }
 
+    /// <summary>  
+    /// This method is used to ensure that a customer can deposit money into their account and also ensure that the account exists.  
+    /// </summary>  
+    /// <param name="depositDetails"></param>  
+    /// <returns></returns>  
+    public static string Deposit(DepositandWithdrawalDTO depositDetails)
+    {
+        if (depositDetails == null)
+        {
+            return "Invalid deposit details.";
+        }
+        var account = Tables.accounts.FirstOrDefault(a => a.AccountNumber == depositDetails.receiversAccId);
+        if (account == null)
+        {
+            return "Account not found.";
+        }
+        if (depositDetails.Amount <= 0)
+        {
+            return "Invalid deposit amount.";
+        }
+        DepositandWithdrawalDTO deposit = new DepositandWithdrawalDTO
+        {
+            receiversAccId = depositDetails.receiversAccId,
+            Amount = depositDetails.Amount
+        };
+
+        account.Balance += (double)depositDetails.Amount;
+        return "Deposit successful. New balance: " + account.Balance;
+    }
+
+    public string Withdraw(DepositandWithdrawalDTO withdrawDetails)
+    {
+        var account = Tables.accounts.FirstOrDefault(a => a.AccountNumber == withdrawDetails.receiversAccId);
+        if (account == null)
+        {
+            return "Account not found.";
+        }
+
+        if (withdrawDetails.Amount <= 0)
+        {
+            return "Invalid withdrawal amount.";
+        }
+
+        if (account.Balance < withdrawDetails.Amount)
+        {
+            return "Insufficient balance.";
+        }
+        DepositandWithdrawalDTO withdrawal = new DepositandWithdrawalDTO
+        {
+            receiversAccId = withdrawDetails.receiversAccId,
+            Amount = withdrawDetails.Amount
+
+        };
+
+        account.Balance -= withdrawDetails.Amount;
+        return "Withdrawal successful. New balance: " + account.Balance;
+    }
 }
